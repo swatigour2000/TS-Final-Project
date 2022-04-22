@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% block content %}
+  </div>
+  <div id="home_page">
+  <div class="left-div">
+    <div class="card" style="width: 25rem; margin-left: 30rem;margin: 5rem;margin-top: 10rem;">
+      <h1 style="font-size: 30px;font-family: auto;color: currentcolor; margin: 1rem;">Upload the image of the affected
+        area!</h1>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+          <input class="form-control" type="file" name="image" id="image" style="width: 200px;margin-left:5rem ;">
+        </div>
+        <button type="submit" class="btn btn-primary" style="    margin: 1rem;margin-left: 155px;">Predict</button>
+      </form>
+
+    </div>
+  </div>
+  <div class="right-div">
+    <div class="card" style="width: 30rem;">
+      <h1 style="font-size: 30px;font-family: auto;color: currentcolor; margin: 1rem;margin-top: 5rem;">PREDICTION PANE
+      </h1>
+
+      {% if image_loc %}
+      <img src="{{image_loc}}" class="card-img-top" alt="" width="250" height="200">
+      <div class="card-body">
+        <p class="card-text">{{prediction}}</p>
+      </div>
+      {% endif %}
+      <div class="card-body">
+        <ul>
+          {% for i in info %}
+          <li>{{i}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% if link %}
+      <div class="card-body">
+        <a href="{{string2}}" class="card-link">Click to know more</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="card" style="width: 30rem;">
+      {% if image_loc %}
+      <div class="card-body">
+        <h4 class="card-text" style="font-size: 20px;font-family: auto;color: currentColor;"><b>In Case of Emergency Contact:</b></h4>
+      </div>
+    {% for key, value in doc.items %}
+    <ul class="list-group list-group-flush">
+      <hr>
+        {% for key2,value2 in value.items %}
+      <p style="margin: 1rem;">{{key2}}-{{value2}}</p>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+    {% endif %}
+  </div>
+  </div>
+  </div>
+</div>
+{% endblock %}
