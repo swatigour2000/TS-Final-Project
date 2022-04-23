@@ -34,7 +34,7 @@ def prediction(img_url):
     return labels[index[0]]
 
 def nearby_doctor():
-    maps_api_key='dc_kutP1ys7SiKdEepmZuJiqS1Oii-UW_8cLuFAZvYw'
+    maps_api_key='*********************************'
     g=geocoder.ip("me")
     myAddress=g.latlng
     url='https://discover.search.hereapi.com/v1/discover?at='+str(myAddress[0])+','+str(myAddress[1])+'&limit=5&q=hospital&in=countryCode:IND&apiKey='+maps_api_key
